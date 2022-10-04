@@ -3,7 +3,7 @@
 #include "ADDITION.h"
 #include "SUBTRACTION.h"
 
-class MULTIPLICATION:private ADDITION,private SUBTRACTION
+class MULTIPLICATION:public ADDITION,public SUBTRACTION
 {
     public:
         MULTIPLICATION() = default;

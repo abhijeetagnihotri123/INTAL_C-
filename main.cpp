@@ -1,18 +1,13 @@
-#include "ADDITION.h"
-#include "SUBTRACTION.h"
-#include "MULTIPLICATION.h"
-
+#include "FIBONACI.h"
 using namespace std;
 
 int main()
 {   
-    ADDITION add;
-    SUBTRACTION sub;
-    MULTIPLICATION mul;
-    string number1,number2;
-    cin>>number1>>number2;
-    cout<<add.add_number(number1,number2)<<endl;
-    cout<<sub.subtract_number(number1,number2)<<endl;
-    cout<<mul.multiply(number1,number2)<<endl;
+    cout<<"Enter which fibonacci number you want to find\n";
+    int n;
+    cin>>n;
+    FIBONACI f;
+    INTAL result = f.nth_fibonacci(n);
+    cout<<result<<endl;
     return 0;
 }
