@@ -4,7 +4,7 @@
 #include "APPEND_ZERO.h"
 using namespace std;
 
-class SUBTRACTION:private LEXICOGRAPHICAL,private APPEND_ZERO
+class SUBTRACTION:public LEXICOGRAPHICAL,public APPEND_ZERO
 {
     public:
         SUBTRACTION(void) = default;

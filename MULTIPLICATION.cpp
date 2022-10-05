@@ -1,75 +1,48 @@
 #include "MULTIPLICATION.h"
-string MULTIPLICATION::removeLeadingZeros(string str)
+
+string MULTIPLICATION::multiply_with_single_digit(string number,char digit)
 {
+    int carry = 0;
+    int num_length = number.length();
+    int dig = int(digit-'0');
     int i = 0;
-    while(i < str.length() && str[i] == '0')
+    while(i < num_length)
     {
+        int mul = (int(number[i]-'0')*dig)+carry;
+        carry = mul/10;
+        char c = char((mul%10)+'0');
+        number[i] = c;
         i++;
     }
-    string s = "";
-    while(i < str.length())
-    {
-        s = s + str[i];
-        i++;
+    if(carry > 0)
+    {   
+        number = number + to_string(carry);
     }
-    return s;
-}
-string MULTIPLICATION::multiply_aux(string A,string B)
-{
-    if (A.length() > B.length())
-    {
-        string temp = A;
-        A = B;
-        B = temp;
-    }
-    int n1 = A.length(), n2 = B.length();
-    while (n2 > n1) {
-        A = "0" + A;
-        n1++;
-    }
-    if (n1 == 1) 
-    {
-        int ans = stoi(A) * stoi(B);
-        return to_string(ans);
-    }
-    if (n1 % 2 == 1) 
-    {
-        n1++;
-        A = "0" + A;
-        B = "0" + B;
-    }
-    string Al, Ar, Bl, Br;
-    for (int i = 0; i < n1 / 2; ++i) 
-    {
-        Al += A[i];
-        Bl += B[i];
-        Ar += A[n1 / 2 + i];
-        Br += B[n1 / 2 + i];
-    }
-    string p = multiply(Al, Bl);
-    string q = multiply(Ar, Br);
-    string r = SUBTRACTION::subtract_number(
-        multiply(ADDITION::add_number(Al, Ar),
-                 ADDITION::add_number(Bl, Br)),
-        ADDITION::add_number(p, q));
-    for (int i = 0; i < n1; ++i)
-        p = p + "0";
-    
-    for (int i = 0; i < n1 / 2; ++i)
-        r = r + "0";
- 
-    string ans = ADDITION::add_number(p, ADDITION::add_number(q, r));
- 
-    ans = removeLeadingZeros(ans);
- 
-    return ans;
+    APPEND_ZERO::reverse(number);
+    return number;
 }
 string MULTIPLICATION::multiply(string number1,string number2)
-{
-    return multiply_aux(number1,number2);
+{   
+    APPEND_ZERO::reverse(number1);
+    APPEND_ZERO::reverse(number2);
+    string carry = "0";
+    int i = 0;
+    int num_length = number1.length();
+    while(i < num_length)
+    {
+        string multiplication = multiply_with_single_digit(number2,number1[i]);
+        multiplication = add_number(multiplication,carry);
+        APPEND_ZERO::reverse(multiplication);
+        carry = multiplication.substr(1);
+        APPEND_ZERO::reverse(carry);
+        number1[i] = multiplication[0];
+        i++;
+    }
+    APPEND_ZERO::reverse(carry);
+    if(carry.length() > 0)
+    {
+        number1 = number1 + carry;
+    }
+    APPEND_ZERO::reverse(number1);
+    return number1;
 }
-// int main()
-// {   
-//     MULTIPLICATION mul;
-//     return 0;
-// }

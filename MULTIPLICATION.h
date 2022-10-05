@@ -1,15 +1,14 @@
 #ifndef _MULTIPLICATION_H_
 #define _MULTIPLICATION_H_
 #include "ADDITION.h"
-#include "SUBTRACTION.h"
+#include <iostream>
 
-class MULTIPLICATION:public ADDITION,public SUBTRACTION
+class MULTIPLICATION:public ADDITION
 {
     public:
         MULTIPLICATION() = default;
+        string multiply_with_single_digit(string,char);
         string multiply(string,string);
-        string multiply_aux(string,string);
-        string removeLeadingZeros(string);
         virtual ~MULTIPLICATION() = default;
 };
 

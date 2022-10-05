@@ -2,7 +2,7 @@
 #define _ADDITION_H_
 #include "APPEND_ZERO.h"
 
-class ADDITION:private APPEND_ZERO
+class ADDITION:public APPEND_ZERO
 {   
     public:
         ADDITION(void) = default;
