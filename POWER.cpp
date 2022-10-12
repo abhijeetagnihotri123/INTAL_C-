@@ -4,7 +4,6 @@ INTAL POWER::nth_power(INTAL base,int power)
 {
     if(base == 0 && power == 0)
     {   
-        cout<<"Here\n";
         return INTAL("Not a number");
     }
     if(power == 0)
