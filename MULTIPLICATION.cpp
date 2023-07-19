@@ -16,7 +16,7 @@ string MULTIPLICATION::multiply_with_single_digit(string number,char digit)
     }
     if(carry > 0)
     {   
-        number = number + to_string(carry);
+        number = number + to_string(carry); // carry is single digit so OK, other wise carry as a string should be reversed
     }
     APPEND_ZERO::reverse(number);
     return number;
